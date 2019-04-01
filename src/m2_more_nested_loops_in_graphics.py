@@ -4,8 +4,8 @@ in the context of TWO-DIMENSIONAL GRAPHICS.
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Mark Hays, Amanda Stouder, Aaron Wilkin, their colleagues,
-         and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         and Liz Stutz.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -50,9 +50,27 @@ def draw_upside_down_wall(rectangle, n, window):
     and n is nonnegative.
     """
     # -------------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #     Some tests are already written for you (above).
     # -------------------------------------------------------------------------
+    rect_xl = rectangle.get_upper_left_corner().x
+    rect_yl = rectangle.get_upper_left_corner().y
+    rect_xr = rectangle.get_lower_right_corner().x
+    rect_yr = rectangle.get_lower_right_corner().y
+    rect_height = rectangle.get_height()
+    rect_width = rectangle.get_width()
+    for k in range(n):
+        for j in range(k + 1):
+            new_rect = rg.Rectangle(rg.Point(rect_xl, rect_yl), rg.Point(rect_xr, rect_yr))
+            new_rect.attach_to(window)
+            window.render()
+            rect_xr = rect_xr + rect_width
+            rect_xl = rect_xl + rect_width
+        rect_xr = rect_xr - ((k + 1.5) * rect_width)
+        rect_xl = rect_xl - ((k +1.5) * rect_width)
+        rect_yr = rect_yr - rect_height
+        rect_yl = rect_yl - rect_height
+
 
 
 # -----------------------------------------------------------------------------
